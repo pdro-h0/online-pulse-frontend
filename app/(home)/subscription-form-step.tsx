@@ -140,7 +140,9 @@ const SubscriptionFormStep = () => {
                 <Check className="h-8 w-8 text-green-600" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">Obrigado, {name}!</h2>
-              <p className="text-gray-600 mb-6">Aqui está seu link para compartilhar:</p>
+              {idRoute
+                ? (<p className="text-gray-600 mb-6">Aqui está seu link para compartilhar:</p>)
+                : <p className="text-gray-600 mb-6">Aguarde. Seu link esta sendo gerado...</p>}
             </div>
 
             {idRoute && (

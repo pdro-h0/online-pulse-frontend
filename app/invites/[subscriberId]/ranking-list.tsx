@@ -4,6 +4,7 @@ import RankingItem from "./ranking-item"
 
 const RankingList = () => {
   const { data, isLoading } = useGetRanking()
+
   return (
     <div className="space-y-4">
       {isLoading && <p className="text-muted-foreground text-sm">Carregando...</p>}

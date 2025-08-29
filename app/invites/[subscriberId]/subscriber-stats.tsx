@@ -13,11 +13,6 @@ const SubscriberStats = () => {
   const { data: subscriberAccess, isLoading: accessIsLoading } = useGetsubscriberAccessCount(params.subscriberId)
   const { data: subscriberClicks, isLoading: clicksIsLoading } = useGetsubscriberInvitesClicks(params.subscriberId)
 
-  console.log({
-    subscriberRank,
-    subscriberAccess,
-    subscriberClicks
-  })
   return (
     rankIsLoading || accessIsLoading || clicksIsLoading
       ? (<p>Carregando...</p>)
@@ -29,7 +24,7 @@ const SubscriberStats = () => {
               <div className="text-center">
                 <p className="text-2xl font-bold text-gray-900">Quantas pessoas se insceveram usando seu link: {subscriberAccess?.count}</p>
                 <p className="text-2xl font-bold text-gray-900">Quantas pessoas clicaram no seu link: {subscriberClicks?.count}</p>
-                {subscriberRank?.position !== null && <p className="text-gray-600">Você esta na {subscriberRank?.position}° posição</p>}
+                <p className="text-gray-600">Você esta na {subscriberRank?.position}° posição</p>
               </div>
               <Star className="size-8 text-purple-600" />
             </div>
@@ -38,6 +33,4 @@ const SubscriberStats = () => {
       )
   )
 }
-// 3c32081d-0bf6-4925-89ec-a6020987dbf2
-// 55b025f7-f9c8-4208-a26c-66c7ec7b1363
 export default SubscriberStats
