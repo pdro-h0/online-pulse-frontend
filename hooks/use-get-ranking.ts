@@ -10,7 +10,7 @@ export const useGetRanking = () => {
   return useQuery({
     queryKey: ["get-ranking"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8080/ranking")
+      const response = await fetch(`${process.env.API_URL}/ranking`)
       const result: GetRankingResponse = await response.json()
       return result
     }

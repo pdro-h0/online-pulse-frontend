@@ -10,11 +10,11 @@ type SubscribeToEventResponse = {
 }
 
 export const useSubscribeToEvent = () => {
-  // const queryClient = useQueryClient()
+  // const queryClient = useQueryClient() 
 
   return useMutation({
     mutationFn: async (data: SubscribeToEventRequest) => {
-      const response = await fetch("http://localhost:8080/subscriptions", {
+      const response = await fetch(`${process.env.API_URL}/subscriptions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
