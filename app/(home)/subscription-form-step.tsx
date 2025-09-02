@@ -79,7 +79,7 @@ const SubscriptionFormStep = ({ referrer }: { referrer: string | null }) => {
     }
   };
 
-  const inviteLink = `${process.env.API_URL}/invites/${idRoute}`;
+  const inviteLink = `${process.env.NEXT_PUBLIC_API_URL}/invites/${idRoute}`;
 
   return (
     <>

@@ -14,7 +14,7 @@ export const useSubscribeToEvent = () => {
 
   return useMutation({
     mutationFn: async (data: SubscribeToEventRequest) => {
-      const response = await fetch(`${process.env.API_URL}/subscriptions`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/subscriptions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
