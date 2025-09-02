@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Trophy, Users, Star, Zap } from "lucide-react"
 import SubscriptionFormStep from "./subscription-form-step"
 
-export default function EventLanding() {
+export default function EventLanding({ searchParams }: { searchParams: { referrer?: string } }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
@@ -33,7 +33,7 @@ export default function EventLanding() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Ganhe prêmios exclusivos ao indicar amigos para este evento imperdível. 
+              Ganhe prêmios exclusivos ao indicar amigos para este evento imperdível.
               <span className="font-semibold text-gray-800"> Compartilhe, convide e conquiste!</span>
             </p>
           </div>
@@ -62,7 +62,7 @@ export default function EventLanding() {
             </div>
           </div>
 
-          <SubscriptionFormStep />
+          <SubscriptionFormStep referrer={searchParams.referrer ?? null} />
         </div>
       </section>
 
@@ -96,7 +96,7 @@ export default function EventLanding() {
                   Quais são os prêmios disponíveis?
                 </AccordionTrigger>
                 <AccordionContent className="px-8 pb-6 text-gray-600">
-                  Os primeiros colocados no ranking ganham prêmios exclusivos, incluindo produtos premium, vouchers 
+                  Os primeiros colocados no ranking ganham prêmios exclusivos, incluindo produtos premium, vouchers
                   de desconto e experiências especiais relacionadas ao evento. Quanto mais convites, melhores as chances!
                 </AccordionContent>
               </AccordionItem>

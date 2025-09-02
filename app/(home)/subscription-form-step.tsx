@@ -14,7 +14,7 @@ import {
   Trophy,
   Share2,
 } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -26,13 +26,12 @@ const subscribeToEventSchema = z.object({
 });
 type SubscribeToEventSchema = z.infer<typeof subscribeToEventSchema>;
 
-const SubscriptionFormStep = () => {
+const SubscriptionFormStep = ({ referrer }: { referrer: string | null }) => {
   const [step, setStep] = useState<"hero" | "form" | "success">("hero");
   const [name, setName] = useState("");
   const [idRoute, setIdRoute] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const searchParams = useSearchParams();
   const router = useRouter();
   const { mutateAsync: subscribeToEvent } = useSubscribeToEvent();
 
@@ -68,7 +67,6 @@ const SubscriptionFormStep = () => {
     name,
   }: SubscribeToEventSchema) => {
     if (acceptTerms) {
-      const referrer = searchParams.get("referrer");
       setName(name);
       setStep("success");
       subscribeToEventForm.reset();
@@ -81,7 +79,7 @@ const SubscriptionFormStep = () => {
     }
   };
 
-  const inviteLink = `http://localhost:8080/invites/${idRoute}`;
+  const inviteLink = `${process.env.API_URL}/invites/${idRoute}`;
 
   return (
     <>
@@ -196,11 +194,10 @@ const SubscriptionFormStep = () => {
               <Button
                 type="submit"
                 disabled={!acceptTerms}
-                className={`w-full h-14 text-lg font-semibold rounded-xl transition-all duration-300 transform ${
-                  acceptTerms
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 shadow-lg hover:shadow-xl"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                }`}
+                className={`w-full h-14 text-lg font-semibold rounded-xl transition-all duration-300 transform ${acceptTerms
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:scale-105 shadow-lg hover:shadow-xl"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
               >
                 <Trophy className="w-5 h-5 mr-2" />
                 Cadastrar e gerar link
